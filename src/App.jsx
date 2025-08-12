@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import { useDarkMode } from './hooks/useDarkMode';
 import WalkForm from './components/WalkForm';
 import WalkResult from './components/WalkResult';
 import WalkHistory from './components/WalkHistory';
@@ -14,6 +15,7 @@ function App() {
   const [currentScreen, setCurrentScreen] = useState(SCREENS.FORM);
   const [currentWalk, setCurrentWalk] = useState(null);
   const [walks, setWalks] = useLocalStorage('walkHistory', []);
+  const [isDark, setIsDark] = useDarkMode();
 
   const handleWalkSubmit = (walkData) => {
     const newWalks = [walkData, ...walks];
@@ -43,6 +45,8 @@ function App() {
           walkData={currentWalk}
           onNewWalk={handleNewWalk}
           onViewHistory={handleViewHistory}
+          isDark={isDark}
+          onToggleDark={() => setIsDark(!isDark)}
         />
       );
     
@@ -52,12 +56,18 @@ function App() {
           walks={walks}
           onNewWalk={handleNewWalk}
           onDeleteWalk={handleDeleteWalk}
+          isDark={isDark}
+          onToggleDark={() => setIsDark(!isDark)}
         />
       );
     
     default:
       return (
-        <WalkForm onSubmit={handleWalkSubmit} />
+        <WalkForm 
+          onSubmit={handleWalkSubmit} 
+          isDark={isDark}
+          onToggleDark={() => setIsDark(!isDark)}
+        />
       );
   }
 }

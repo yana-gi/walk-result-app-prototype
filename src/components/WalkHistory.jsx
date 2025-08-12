@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { formatDate } from '../utils/walkData';
-import { Button, Card } from './ui';
+import { Button, Card } from './ui/catalyst';
 import WalkDetail from './WalkDetail';
 
 const WalkHistory = ({ walks, onNewWalk, onDeleteWalk }) => {
@@ -37,9 +37,9 @@ const WalkHistory = ({ walks, onNewWalk, onDeleteWalk }) => {
 
   if (selectedWalk) {
     return (
-      <div className="min-h-screen game-ui">
-        <div className="header-colored p-6">
-          <div className="max-w-md mx-auto flex items-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 shadow-lg">
+          <div className="max-w-2xl mx-auto flex items-center">
             <Button
               onClick={() => setSelectedWalk(null)}
               variant="secondary"

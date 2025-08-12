@@ -1,5 +1,5 @@
 import { calculateScore } from '../utils/walkData';
-import { Button } from './ui';
+import { Button } from './ui/catalyst';
 import WalkDetail from './WalkDetail';
 
 const WalkResult = ({ walkData, onNewWalk, onViewHistory }) => {
@@ -13,19 +13,19 @@ const WalkResult = ({ walkData, onNewWalk, onViewHistory }) => {
     return { grade: 'D', color: 'text-gray-300', emoji: '🌱' };
   };
 
-  const { grade, color, emoji } = getScoreGrade(score);
+  const { emoji } = getScoreGrade(score);
 
   return (
-    <div className="min-h-screen game-ui">
-      <div className="header-colored p-6 text-center result-celebration">
-        <div className="max-w-md mx-auto">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-8 text-center shadow-lg">
+        <div className="max-w-2xl mx-auto">
           <div className="text-6xl mb-4">{emoji}</div>
           <h1 className="text-4xl font-bold text-white mb-2">
             散歩完了！
           </h1>
         </div>
       </div>
-      <div className="max-w-md mx-auto p-4">
+      <div className="max-w-2xl mx-auto p-6">
 
         {/* 散歩データ表示 */}
         <WalkDetail walkData={walkData}>
@@ -33,16 +33,18 @@ const WalkResult = ({ walkData, onNewWalk, onViewHistory }) => {
           <div className="space-y-4">
             <Button
               onClick={onNewWalk}
-              color="game"
-              className="px-8 py-4 text-xl"
+              variant="game"
+              size="xl"
+              className="w-full"
             >
               🚶‍♂️ 新しい散歩を記録
             </Button>
             
             <Button
               onClick={onViewHistory}
-              color="white"
-              className="px-8 py-4 text-xl"
+              variant="secondary"
+              size="xl"
+              className="w-full"
             >
               📚 散歩履歴を見る
             </Button>

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { WEATHER_OPTIONS, TIME_OF_DAY_OPTIONS, createWalkData } from '../utils/walkData';
-import { Button, Input, Field, Label, Select, Textarea, Card } from './ui';
+import { Button, Input, Field, Label, Select, Textarea, Card, DarkModeToggle } from './ui/catalyst';
 
-const WalkForm = ({ onSubmit }) => {
+const WalkForm = ({ onSubmit, isDark, onToggleDark }) => {
   const [formData, setFormData] = useState(createWalkData());
 
   const handleInputChange = (e) => {
@@ -30,13 +30,17 @@ const WalkForm = ({ onSubmit }) => {
   };
 
   return (
-    <div className="min-h-screen game-ui">
-      <div className="header-colored p-6 text-center">
-        <h1 className="text-3xl font-bold text-white">
-          🚶‍♂️ 散歩記録
-        </h1>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div className="bg-gradient-to-r from-indigo-600 to-purple-600 p-6 text-center shadow-lg">
+        <div className="max-w-2xl mx-auto flex items-center justify-between">
+          <div></div>
+          <h1 className="text-3xl font-bold text-white">
+            🚶‍♂️ 散歩記録
+          </h1>
+          <DarkModeToggle isDark={isDark} onToggle={onToggleDark} />
+        </div>
       </div>
-      <div className="max-w-md mx-auto p-4">
+      <div className="max-w-2xl mx-auto p-6">
         
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* 基本データ */}
@@ -140,14 +144,14 @@ const WalkForm = ({ onSubmit }) => {
                 <div className="flex justify-center gap-4">
                   <Button
                     type="button"
-                    color="counter"
+                    variant="counter"
                     onClick={() => handleCounterChange('dogCount', -1)}
                   >
                     -1
                   </Button>
                   <Button
                     type="button"
-                    color="counter"
+                    variant="counter"
                     onClick={() => handleCounterChange('dogCount', 1)}
                   >
                     +1
@@ -163,14 +167,14 @@ const WalkForm = ({ onSubmit }) => {
                 <div className="flex justify-center gap-4">
                   <Button
                     type="button"
-                    color="counter"
+                    variant="counter"
                     onClick={() => handleCounterChange('catCount', -1)}
                   >
                     -1
                   </Button>
                   <Button
                     type="button"
-                    color="counter"
+                    variant="counter"
                     onClick={() => handleCounterChange('catCount', 1)}
                   >
                     +1
@@ -210,8 +214,9 @@ const WalkForm = ({ onSubmit }) => {
           {/* 送信ボタン */}
           <Button
             type="submit"
-            color="game"
-            className="px-8 py-4 text-xl"
+            variant="game"
+            size="xl"
+            className="w-full"
           >
             🎯 散歩完了！結果を見る
           </Button>

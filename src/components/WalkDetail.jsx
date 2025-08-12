@@ -3,7 +3,7 @@ import {
   getWeatherLabel, 
   getTimeOfDayLabel 
 } from '../utils/walkData';
-import { Card } from './ui';
+import { Card } from './ui/catalyst';
 
 const WalkDetail = ({ walkData, children }) => {
   return (
